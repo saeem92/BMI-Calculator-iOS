@@ -3,7 +3,7 @@
 //  BMI Calculator
 //
 //  Created by Saeem on 20/01/2022.
-//  Copyright © 2022 Saeem. All rights reserved.
+//  Copyright © 2022  Saeem. All rights reserved.
 //
 
 import UIKit
@@ -65,6 +65,14 @@ class ViewController: UIViewController {
         // NOTE: ALWAYS REMEMBER BODMAS HAPPENS HERE SO TAKE CARE OF THE VALUES YOU SPECIFY TO MULTIPLY ELSE YOUR FORMULA MIGHT BREAK AND SHOW YOU DIFFERENT VALUES.
         
         // Power is a function in swift which takes 2 inputs and multiply it by the number which we specify.
+        
+        
+        let secondVC = SecondViewController()
+        // Here we have let secondVC inside calculate button so when we click on it displays us a new screen which is SecondViewController that we have created.
+        secondVC.bmiValue = String(format: "%.1f", bmi) // Here we are accessing our bmi value that we have created inside SecondViewcontroller.
+        // We have created this in String format because our bmi value was in String and BMI value is specified in float so we have created a format to display this value as String.
+        
+        self.present(secondVC, animated: true, completion: nil) // This is helping us to show our secondvc screen which secondviewcontroller and we have specified if we want animation or not and completion.
     }
     
 }
