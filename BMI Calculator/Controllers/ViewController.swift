@@ -67,7 +67,7 @@ class ViewController: UIViewController {
         // Power is a function in swift which takes 2 inputs and multiply it by the number which we specify.
         
         
-        let secondVC = SecondViewController()
+        // let secondVC = SecondViewController()
         // Here we have let secondVC inside calculate button so when we click on it displays us a new screen which is SecondViewController that we have created.
         secondVC.bmiValue = String(format: "%.1f", bmi) // Here we are accessing our bmi value that we have created inside SecondViewcontroller.
         // We have created this in String format because our bmi value was in String and BMI value is specified in float so we have created a format to display this value as String.
