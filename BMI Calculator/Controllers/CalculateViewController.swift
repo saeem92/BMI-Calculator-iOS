@@ -8,7 +8,9 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class CalculateViewController: UIViewController {
+    
+    var bmiValue = "0.0" // We are using this variable to display result in ResultViewcController.
 
     @IBOutlet weak var heightLabel: UILabel!
     // heightlabel is the label built in our UI and we have connected it from UI to view controller.
@@ -56,7 +58,7 @@ class ViewController: UIViewController {
         // Here we are connecting our weight to weightslider outlet to calculate their BMI
         
         let bmi = weight / pow(height, 2)
-        print(bmi)
+        bmiValue = String(format: "%.1f", bmi) // Here we are storing bmivalue in bmi variable we created above.
         
         // ABOVE CODE IS HELPING US CALCULATING THE BMI VALUE.
         
@@ -67,13 +69,41 @@ class ViewController: UIViewController {
         // Power is a function in swift which takes 2 inputs and multiply it by the number which we specify.
         
         
-        // let secondVC = SecondViewController()
-        // Here we have let secondVC inside calculate button so when we click on it displays us a new screen which is SecondViewController that we have created.
-        secondVC.bmiValue = String(format: "%.1f", bmi) // Here we are accessing our bmi value that we have created inside SecondViewcontroller.
+        
+        self.performSegue(withIdentifier: "goToResult", sender: self)
+        // In the above code we are using segue to connect our calculateviewocntroller to ResultViewController
+        // We have specified sender in above code which is the initiator of the segue and its ofcourse our calculateViewcontroller which is self as we are inside it currently.
+        
+        // NOTE: IT IS NOT MANDATORY HERE TO USE SELF WE CAN REMOVE IT TO KEEP OUR CODE MORE CLEAN AS SWIFT ALREADY KNOWS THAT WE ARE TALKING ABOUT THIS CALCULATE VIEW CONTROLLER ONLY.
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "goToResult" { // we have used if segue.identifier == "gotoresult to check in case if we have multiple segue in our app that we are connecting to the right viewcontroller.
+            
+            
+            let destinationVC = segue.destination as! ResultViewController // we have created a constant destination vc here and this segue.destination is the view controller that will be initialized when the segue gets performed and it has a type of UIViewController.
+            
+            // We have used as! ResultViewController in above code because segue.destination has a datatype of UIViewcontroller and therefore our destination vc is also a UIViewController BUT BMI VALUE ONLY EXIST WITHIN OUR RESULTVIEWCONTROLLER SO IN ORDER TO NARROW IT DOWN TO SAY THAT SEGUE.DESTINATION IS ACTUALLY A VIEW CONTROLLER WE HAVE USED as! ResultViewController.
+            
+            // "as" Keyword is used for performing downcasting the ! says this is going to be a forced downcast.
+            
+            destinationVC.bmiValue = bmiValue // We have setup the bmivalue here so when our segue gets triggered we will pass over the bmivalue to our destinationVC which is our ResultViewController.
+             }
+    }
+    // The above code is prepare for segue method it is a method that we inherit from UIViewcontroller which we are going to override
+        
+        
+        
+        
+        
+        
+        
+        // WE HAVE COMMENTED BELOW CODE WHICH WE CREATED TO CONNECT ONE SCREEN TO ANOTHER INSTEAD OF THIS WE ARE USING SEGUE ABOVE
+        // secondVC.bmiValue = String(format: "%.1f", bmi) // Here we are accessing our bmi value that we have created inside SecondViewcontroller.
         // We have created this in String format because our bmi value was in String and BMI value is specified in float so we have created a format to display this value as String.
         
-        self.present(secondVC, animated: true, completion: nil) // This is helping us to show our secondvc screen which secondviewcontroller and we have specified if we want animation or not and completion.
-    }
+       // self.present(secondVC, animated: true, completion: nil) // This is helping us to show our secondvc screen which secondviewcontroller and we have specified if we want animation or not and completion.
+    
     
 }
 

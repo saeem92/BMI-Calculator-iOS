@@ -10,6 +10,8 @@
 import UIKit
 
 class ResultViewController: UIViewController {
+    
+    var bmiValue:String? // This is a property of ResultViewcontroller I have set it up as optional string because initially, when I create my ResultViewController I don't know what is the BMI value of a user or is going to be. it's only possible when I calculate the BMI and pass it over
     @IBOutlet weak var bmiLabel: UILabel!
     
     
@@ -18,10 +20,12 @@ class ResultViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        bmiLabel.text = bmiValue // This is helping us to display our calculate BMI in the label.
     }
     
     @IBAction func recalculatePressed(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil) // This will dismiss our current viewController which is ResultViewController here so when we hit recalculate button it will take us to the calculateViewController Screen.
+        // NOTE: IT IS NOT MANDATORY HERE TO USE SELF WE CAN REMOVE IT TO KEEP OUR CODE MORE CLEAN.
     }
     
     /*
