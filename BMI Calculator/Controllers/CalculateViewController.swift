@@ -10,7 +10,7 @@ import UIKit
 
 class CalculateViewController: UIViewController {
     
-    var bmiValue = "0.0" // We are using this variable to display result in ResultViewcController.
+    var calculatorBrain = CalculatorBrain()
 
     @IBOutlet weak var heightLabel: UILabel!
     // heightlabel is the label built in our UI and we have connected it from UI to view controller.
@@ -57,10 +57,9 @@ class CalculateViewController: UIViewController {
         // using let weight constant above so we can use it later to calculate BMI
         // Here we are connecting our weight to weightslider outlet to calculate their BMI
         
-        let bmi = weight / pow(height, 2)
-        bmiValue = String(format: "%.1f", bmi) // Here we are storing bmivalue in bmi variable we created above.
         
-        // ABOVE CODE IS HELPING US CALCULATING THE BMI VALUE.
+        calculatorBrain.calculateBMI(height: height, weight: weight)
+        // ABOVE CODE IS HELPING US CALCULATING THE BMI VALUE we are getting it from struct we have created in CalculatorBrain
         
         // brackets our carried out first before any of the other operations.
         
@@ -87,7 +86,7 @@ class CalculateViewController: UIViewController {
             
             // "as" Keyword is used for performing downcasting the ! says this is going to be a forced downcast.
             
-            destinationVC.bmiValue = bmiValue // We have setup the bmivalue here so when our segue gets triggered we will pass over the bmivalue to our destinationVC which is our ResultViewController.
+            destinationVC.bmiValue = calculatorBrain.getBMIValue() // We have setup the bmivalue here so when our segue gets triggered we will pass over the bmivalue to our destinationVC which is our ResultViewController.
              }
     }
     // The above code is prepare for segue method it is a method that we inherit from UIViewcontroller which we are going to override
