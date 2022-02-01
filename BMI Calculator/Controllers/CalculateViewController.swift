@@ -87,6 +87,9 @@ class CalculateViewController: UIViewController {
             // "as" Keyword is used for performing downcasting the ! says this is going to be a forced downcast.
             
             destinationVC.bmiValue = calculatorBrain.getBMIValue() // We have setup the bmivalue here so when our segue gets triggered we will pass over the bmivalue to our destinationVC which is our ResultViewController.
+            
+            destinationVC.advice = calculatorBrain.getAdvice()
+            destinationVC.color = calculatorBrain.getColor()
              }
     }
     // The above code is prepare for segue method it is a method that we inherit from UIViewcontroller which we are going to override
@@ -95,6 +98,27 @@ class CalculateViewController: UIViewController {
         
         
         
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
         
         
         // WE HAVE COMMENTED BELOW CODE WHICH WE CREATED TO CONNECT ONE SCREEN TO ANOTHER INSTEAD OF THIS WE ARE USING SEGUE ABOVE
